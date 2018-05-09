@@ -1,0 +1,85 @@
+.playlist-image {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+  opacity: 0.75;
+  /* float: left; */
+}
+
+.playlist-image:hover {
+  opacity: 1;
+
+}
+
+.playlist:hover i {
+  visibility: visible;
+}
+
+.playlist {
+  width: 150px;
+  margin: 20px;
+  float: left;
+  position: relative;
+}
+
+.playlist .name {
+  font-family: cursive;
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+  height: 22px;
+  overflow-x: visible;
+}
+.image-cropper {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+     position: relative;
+    border-radius: 50%;
+    border: 3px dotted #aaa;
+    /* margin-top: -14px; */
+}
+
+
+.playlist i {
+  position: absolute;
+  visibility: hidden;
+
+  background-color: #fff;
+  text-align: center;
+  padding-top: 7px;
+
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.playlist i:active {
+  width: 28px;
+  height: 28px;
+}
+
+.glyphicon-trash {
+  top: 8px;
+  left: 42px;
+  color: red;
+}
+
+.glyphicon-edit {
+  top: 8px;
+  left: 78px;
+  color: orange;
+}
+
+.glyphicon-play {
+  top: 60px;
+  left: 60px;
+color: lightgreen;
+}
+
+.testarctext {
+  width: 200px;
+  height: 200px;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <!-- meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Play-Me</title>
+
+    <!-- jquery support -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- bootstrap support -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- styling -->
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/playlists.css">
+
+    <!-- scripts -->
+    <script src="scripts/view.js"></script>
+    <script src="scripts/data.js"></script>
+  </head>
+  <body>
+		<header>
+      <!-- menu -->
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <!-- collapse support: -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href=""><img alt="Brand" src="images/logo.png"></a>
+            <a class="navbar-brand" href="">Play-Me</a>
+          </div>
+
+          <!-- Nav Links -->
+          <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#" class="addplaylist"><i class="glyphicon glyphicon-plus"></i> Add new playlist</a></li>
+            </ul>
+            <form class="nav navbar-nav navbar-form navbar-right">
+              <div id="custom-search-input">
+                      <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search..." />
+                          <span class="input-group-btn">
+                              <button class="btn btn-info" type="button">
+                                  <i class="glyphicon glyphicon-search"></i>
+                              </button>
+                          </span>
+                      </div>
+                  </div>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+        </nav>
+      <!-- end of menu -->
+
+    </header>
+
+    <main>
+      <div id="playlists">
+
+      </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" data-backdrop="false" id="addplaylistmodal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">Add Playlist</h4>
+          </div>
+          <div class="modal-body row">
+
+            <form id="addplaylistform" class="col-xs-6">
+              <input name="songid" class="hidden"/>
+              <div class="form-group">
+                <label for="playlistname">Playlist Name: </label>
+                <input type="text" class="form-control" id="playlistname"  placeholder="Playlist Name...">
+              </div>
+              <div class="form-group">
+                <label for="playlistimage">Playlist Image URL: </label>
+                <input type="text" class="form-control" id="playlistimage" placeholder="Playlist Image URL..." value="http://www.personal.psu.edu/afr3/blogs/siowfa13/brain-mind-music.jpg">
+              </div>
+            </form>
+            <div class="col-xs-6">
+              <img id="playlistTempImage" class="full-size" src="http://www.personal.psu.edu/afr3/blogs/siowfa13/brain-mind-music.jpg">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-default" name="reset">Reset</button>
+            <button type="button" class="btn btn-primary" name="next">Next</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+    <div class="modal fade" data-backdrop="false" id="editsongsmodal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Add Playlist Songs</h4>
+          </div>
+          <div class="modal-body">
+
+            <form id="songsform" class="row"></form>
+            <div id="repeatableSongInputs" class="hidden">
+              <div class="form-group col-xs-6">
+                <input type="text" class="form-control" name="songurl" placeholder="Song Url...">
+              </div>
+              <div class="form-group col-xs-5">
+                <input type="text" class="form-control" name="songname" placeholder="Song's Name..." >
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default  mr-auto" name="addsong">Add Another Song</button>
+            <button type="button" class="btn btn-primary" name="save">Save</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+    <script src="scripts/circletype.min.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
