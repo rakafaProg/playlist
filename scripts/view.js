@@ -62,33 +62,3 @@ var viewControl = function () {
   
   }();
   
-  var modalControl = function () {
-  
-    function viewModal() {
-      $(".modal").modal("show");
-    }
-  
-    return {
-      addPlaylist : function () {
-        
-        viewModal();
-      },
-  
-      editPlaylist : function (playlist) {
-  
-        viewModal();
-      },
-  
-      editSongs : function (playlistId) {
-  
-        viewModal();
-      },
-  
-      deletePlaylist : function (playlistId) {
-  
-        viewModal();
-      },
-  
-    }
-
-  }

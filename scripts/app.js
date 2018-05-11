@@ -1,14 +1,17 @@
 (function () {
   "use strict";
 
-  var playlistArray =[];
+  let playlistArray =[];
+
+
+
 
   function init () {
 
     // set event for view control: 
     viewControl.setEvents({
       playPlaylist: function(e) {alert("play")}, 
-      editPlaylist: function(e) {alert("edit")}, 
+      editPlaylist: editPlaylistClick, 
       deletePlaylist: function(e) {alert("delete")}, 
     });
 
@@ -20,13 +23,26 @@
       });
     });
 
+    modalControl.init();
+
+  }
+
+  function editPlaylistClick (e) {
+    let id = $(this).data("id");
+    modalControl.editPlaylist(playlistArray[id]);
   }
 
   // let currentPlaylists = [];
 
-  $("#playlistimage").change(e=>{
-    $("#playlistTempImage").attr("src",$("#playlistimage").val());
-  });
+
+  // inputs.playlistImg.change(e=>{
+  //   if (validations.imageUrlRegex(inputs.playlistImg.val())){
+  //     $("#playlistTempImage").attr("src",inputs.playlistImg.val());
+  //     inputs.playlistImg.removeClass("invalid-input");
+  //   } else {
+  //     inputs.playlistImg.addClass("invalid-input");
+  //   }
+  // });
 
 
 
@@ -40,6 +56,7 @@
   });
 
   $(".modal button[name=next]").click(e=>{
+    return;
     $("#songsform").html("");
     if ($("#addplaylistform input[name=songid]").val()!="-1")
       editSongListToHMTL($("#addplaylistform input[name=songid]").val());

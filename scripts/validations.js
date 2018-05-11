@@ -2,11 +2,11 @@ var validations = function () {
 
     return {
       nameRagex : function (name) {
-        return true;
+        return name.length >= 2;
       }, 
 
       imageUrlRegex: function (url) {
-        return true
+        return true;
       }, 
 
       mp3Regex: function (url) {
@@ -14,7 +14,7 @@ var validations = function () {
       },
 
       audioAjax: function (url) {
-        return true
+        return true;
       },
 
     };

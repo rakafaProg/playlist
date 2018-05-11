@@ -1,0 +1,14 @@
+.modal input.invalid-input {
+    border-color: red;
+}
+
+.modal .errorMsg {
+    color: red;
+    display: none;
+}
+
+.modal input.invalid-input + .errorMsg {
+    display: block;
+}
+
+
