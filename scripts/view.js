@@ -8,7 +8,12 @@ var viewControl = function () {
     function createElement (tag, classList, dataid) {
       return $(`<${tag}></${tag}>`)
               .addClass(classList)
-              .data("id", dataid);
+              .attr("data-id", dataid);
+    }
+
+    function circleText(jqElement) {
+      new CircleType(jqElement[0]).radius(120);
+      jqElement.fitText();
     }
 
     return {
@@ -43,13 +48,15 @@ var viewControl = function () {
         maindiv.appendTo(playlistsContainer);
         
         // circle the name
-        new CircleType(nameDiv[0]).radius(120);
-        nameDiv.fitText();
+        circleText(nameDiv);
+        // new CircleType(nameDiv[0]).radius(120);
+        // nameDiv.fitText();
 
       }, 
   
-      UpdatePlaylist: function (id, playlist) {
-  
+      updatePlaylist: function (id, name, image) {
+        $(`.image-cropper[data-id=${id}] img`).attr("src", image);
+        circleText($(`.name[data-id=${id}]`).text(name));
       },
 
       setEvents: function (params) {

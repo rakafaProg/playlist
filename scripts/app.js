@@ -31,28 +31,10 @@
     let id = $(this).data("id");
     modalControl.editPlaylist(playlistArray[id]);
   }
-
-  // let currentPlaylists = [];
-
-
-  // inputs.playlistImg.change(e=>{
-  //   if (validations.imageUrlRegex(inputs.playlistImg.val())){
-  //     $("#playlistTempImage").attr("src",inputs.playlistImg.val());
-  //     inputs.playlistImg.removeClass("invalid-input");
-  //   } else {
-  //     inputs.playlistImg.addClass("invalid-input");
-  //   }
-  // });
-
-
-
+  
   // open create playlist modal
   $(".addplaylist").click(e => {
-    $("#gridSystemModalLabel").text("Add Playlist");
-    $("#addplaylistform input").val("");
-    $("#playlistTempImage").attr("src","");
-    $("#addplaylistform input[name=songid]").val("-1");
-    $('#addplaylistmodal').modal('show');
+    modalControl.addPlaylist();
   });
 
   $(".modal button[name=next]").click(e=>{

@@ -15,6 +15,11 @@
         $("#addplaylistmodal").modal("show");
     }
 
+    function editSongs (playlistId) {
+        $("#addplaylistmodal").modal("hide");
+        $("#editsongsmodal").modal("show");
+    }
+
 
 
     function init () {
@@ -49,8 +54,8 @@
         });
 
         $("button[name=reset]").click(e=>{
+            inputs.imagePreview.attr("src","");
             $("#addplaylistform input").val("");
-            $("#playlistTempImage").attr("src","");
             $("#addplaylistform input").removeClass("invalid-input");
             $("#addplaylistError").hide();
         });
@@ -62,11 +67,12 @@
             } else {
                 $("#addplaylistError").hide();
 
-                if (inputs.playlistId.val()=="-1") {
-                    alert("next");
-                } else {
-                    alert ("save and next");
-                }
+                if (inputs.playlistId.val()!="-1") {
+                    data.updatePlalist(inputs.playlistId.val(), inputs.playlistName.val(), inputs.playlistImg.val());
+                    viewControl.updatePlaylist(inputs.playlistId.val(), inputs.playlistName.val(), inputs.playlistImg.val());
+                } 
+
+                editSongs (inputs.playlistId.val());
                 
             }           
         });
@@ -86,10 +92,10 @@
         viewAddModal("Edit Playlist",playlist.id, playlist.name, playlist.image);
       },
   
-      editSongs : function (playlistId) {
+    //   editSongs : function (playlistId) {
   
-        viewModal();
-      },
+    //     viewModal();
+    //   },
   
       deletePlaylist : function (playlistId) {
   
