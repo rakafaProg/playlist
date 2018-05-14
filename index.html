@@ -95,12 +95,12 @@
               <div class="form-group">
                 <label for="playlistname">Playlist Name: </label>
                 <input type="text" class="form-control" id="playlistname"  placeholder="Playlist Name...">
-                <div class="errorMsg">Please enter playlist name. Name must have at list 2 characters, and can contain only letters, numbers and spaces. </div> 
+                <div class="errorMsg">Please enter playlist name. Name must have at list 2 characters, and can contain only letters, numbers and spaces. </div>
               </div>
               <div class="form-group">
                 <label for="playlistimage">Playlist Image URL: </label>
                 <input type="text" class="form-control" id="playlistimage" placeholder="Playlist Image URL..." value="http://www.personal.psu.edu/afr3/blogs/siowfa13/brain-mind-music.jpg">
-                <div class="errorMsg">Please enter valid URL for an image. </div>              
+                <div class="errorMsg">Please enter valid URL for an image. </div>
               </div>
             </form>
             <div class="col-xs-6">
@@ -124,20 +124,11 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Add Playlist Songs</h4>
+            <h4 class="modal-title">Edit Playlist's Songs</h4>
           </div>
           <div class="modal-body">
 
             <form id="songsform" class="row"></form>
-            <div id="repeatableSongInputs" class="hidden">
-              <div class="form-group col-xs-6">
-                <input type="text" class="form-control" name="songurl" placeholder="Song Url...">
-              </div>
-              <div class="form-group col-xs-5">
-                <input type="text" class="form-control" name="songname" placeholder="Song's Name..." >
-
-              </div>
-            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default  mr-auto" name="addsong">Add Another Song</button>

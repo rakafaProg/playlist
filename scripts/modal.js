@@ -1,6 +1,6 @@
 
   var modalControl = function () {
-  
+
     let inputs;
 
     // View Modal
@@ -17,17 +17,58 @@
 
     function editSongs (playlistId) {
         $("#addplaylistmodal").modal("hide");
+
+        $("#songsform").html("");
+        if (playlistId != -1) {
+
+        } else {
+          $("#songsform")
+          addSongToView();
+        }
+
         $("#editsongsmodal").modal("show");
     }
 
 
+
+    function addSongToView () {
+      let containerDiv = $("<div></div").addClass("songInputContainer");
+      let nameInput = $("<div></div>").addClass("form-group col-xs-5");
+      $("<input />").addClass("form-control")
+      .attr("name", "songname").attr("placeholder", "Song's Name...")
+      .change(songNameChanged)
+      .appendTo(nameInput);
+
+      let urlInput = $("<div></div>").addClass("form-group col-xs-6");
+      $("<input />").addClass("form-control")
+      .attr("name", "songurl").attr("placeholder", "Song Url...")
+      .change(songUrlChanged)
+      .appendTo(urlInput);
+
+      nameInput.appendTo(containerDiv);
+      urlInput.appendTo(containerDiv);
+
+      containerDiv.appendTo("#songsform");
+    }
+
+    function songNameChanged(e) {
+      if (!validations.nameRagex($(this).val())) {
+        $(this).addClass("invalid-input");
+      } else {
+        $(this).removeClass("invalid-input");
+      }
+    }
+
+    function songUrlChanged(e) {
+      console.log("url chnaged");
+    }
 
     function init () {
         // Modal Inputs
         inputs = {
             playlistId: $("#addplaylistform input[name=songid]"),
             playlistName : $("#playlistname"),
-            playlistImg : $("#playlistimage"), 
+            playlistImg : $("#playlistimage"),
             imagePreview: $("#playlistTempImage"),
         };
 
@@ -53,6 +94,7 @@
             }
         });
 
+        // Reset Inputs
         $("button[name=reset]").click(e=>{
             inputs.imagePreview.attr("src","");
             $("#addplaylistform input").val("");
@@ -60,8 +102,9 @@
             $("#addplaylistError").hide();
         });
 
+        // Go to Songs Editing
         $(".modal button[name=next]").click(e=>{
-            if (!validations.nameRagex(inputs.playlistName.val()) || 
+            if (!validations.nameRagex(inputs.playlistName.val()) ||
                 !validations.imageUrlRegex(inputs.playlistImg.val())) {
                     $("#addplaylistError").show();
             } else {
@@ -70,40 +113,84 @@
                 if (inputs.playlistId.val()!="-1") {
                     data.updatePlalist(inputs.playlistId.val(), inputs.playlistName.val(), inputs.playlistImg.val());
                     viewControl.updatePlaylist(inputs.playlistId.val(), inputs.playlistName.val(), inputs.playlistImg.val());
-                } 
+                }
 
                 editSongs (inputs.playlistId.val());
-                
-            }           
+
+            }
         });
 
+        $(".modal button[name=addsong]").click(addSongToView);
 
+        $("#editsongsmodal button[name=save]").click(e=> {
+          let songsArray = [];
+
+          let names = $("input[name=songurl]")
+          let valid = true;
+
+          $("input[name=songname]").each((i, value)=>{
+            let songName = $(value).val();
+            let songUrl = $(names[i]).val();
+            if (validations.nameRagex(songName)
+              && validations.mp3Regex(songUrl)
+              && validations.audioAjax(songUrl)
+            ) {
+              songsArray.push( {name: songName, url: songUrl});
+            } else {
+              valid = false;
+            }
+
+
+          });
+
+          if (valid) { // save songs
+            if(inputs.playlistId.val()==-1) {
+              data.createPlaylist(inputs.playlistName.val(), inputs.playlistImg.val(), songsArray, pId => {
+
+                viewControl.addPlaylist({
+                  id:pId,
+                  name: inputs.playlistName.val(),
+                  image: inputs.playlistImg.val()
+                });
+
+              });
+
+            } else {
+              data.updateSongs(inputs.playlistId.val(), songsArray, () => {
+                console.log("Saved Songs!!");
+              });
+            }
+          }
+
+          //console.log(songsArray);
+
+        });
 
     }
 
 
-  
+
     return {
       addPlaylist : function () {
         viewAddModal("Add Playlist",-1, "", "");
       },
-  
+
       editPlaylist : function (playlist) {
         viewAddModal("Edit Playlist",playlist.id, playlist.name, playlist.image);
       },
-  
+
     //   editSongs : function (playlistId) {
-  
+
     //     viewModal();
     //   },
-  
+
       deletePlaylist : function (playlistId) {
-  
+
         viewModal();
       },
 
       init: init
-  
+
     }
 
 
