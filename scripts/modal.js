@@ -20,10 +20,13 @@
 
         $("#songsform").html("");
         if (playlistId != -1) {
-
+          data.getSongs(playlistId, d=>{
+            $.each(d.songs, (i,song)=>{
+              addSongToView(song);
+            });
+          });
         } else {
-          $("#songsform")
-          addSongToView();
+          addSongToView({name:"",url:""});
         }
 
         $("#editsongsmodal").modal("show");
@@ -31,17 +34,19 @@
 
 
 
-    function addSongToView () {
+    function addSongToView (song) {
       let containerDiv = $("<div></div").addClass("songInputContainer");
       let nameInput = $("<div></div>").addClass("form-group col-xs-5");
       $("<input />").addClass("form-control")
       .attr("name", "songname").attr("placeholder", "Song's Name...")
+      .val(song.name)
       .change(songNameChanged)
       .appendTo(nameInput);
 
       let urlInput = $("<div></div>").addClass("form-group col-xs-6");
       $("<input />").addClass("form-control")
       .attr("name", "songurl").attr("placeholder", "Song Url...")
+      .val(song.url)
       .change(songUrlChanged)
       .appendTo(urlInput);
 

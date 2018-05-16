@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  let playlistArray =[];
+  
 
 
 
@@ -16,10 +16,10 @@
     });
 
     // get all playlists from api
-    data.getAllPlaylists (data => {
-      $.each(data, function( index, playlist ) {
+    data.getAllPlaylists (playlists => {
+      $.each(playlists, function( index, playlist ) {
         viewControl.addPlaylist(playlist);
-        playlistArray[playlist.id] = playlist;
+        data.playlistArray[playlist.id] = playlist;
       });
     });
 
@@ -29,7 +29,7 @@
 
   function editPlaylistClick (e) {
     let id = $(this).data("id");
-    modalControl.editPlaylist(playlistArray[id]);
+    modalControl.editPlaylist(data.playlistArray[id]);
   }
 
   // open create playlist modal

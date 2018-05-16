@@ -2,6 +2,7 @@
 
   var data = function () {
     var apiUrl = "api/playlist";
+    let playlistArray =[];
 
     function getData (url, callback) {
       $.ajax({
@@ -40,22 +41,34 @@
           image: pImg,
           songs: songs
         };
-        console.log("i want to post this playlist for u");
-        postData("", playlistObj, data=>callback(data.id));
+        
+        postData("", playlistObj, data=> {
+          playlistArray[data.id] = {id:data.id, name:pName,image:pImg};
+          callback(data.id);
+        });
+        
         //callback(1); // plalist id
       },
 
       updatePlalist: function (id, name, image) {
-
+        let playlistObj = {
+          name: name,
+          image: image,
+        };
+        postData("/" + id, playlistObj, ()=>{
+          playlistArray[id] = {id:id, name:name,image:image};
+        });
       },
 
-      updateSongs: function (pId, songs, callback) {
-        callback();
+      updateSongs: function (pId, songs, callback) {        
+        postData(`/${pId}/songs`,{songs: songs},  callback);
       },
 
       deletePlaylist: function (id) {
 
       },
+
+      playlistArray: playlistArray,
 
     };
 
