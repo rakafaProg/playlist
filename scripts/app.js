@@ -12,7 +12,9 @@
     viewControl.setEvents({
       playPlaylist: function(e) {alert("play")},
       editPlaylist: editPlaylistClick,
-      deletePlaylist: function(e) {alert("delete")},
+      deletePlaylist: function(e) {
+        modalControl.deleteConfirmation($(this).data("id"));
+      },
     });
 
     // get all playlists from api

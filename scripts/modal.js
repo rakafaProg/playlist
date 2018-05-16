@@ -125,6 +125,14 @@
             }
         });
 
+        // delete event
+        $(".modal button[name=delyes]").click(e=>{
+          let id = $("#deleteId").val();
+          data.deletePlaylist(id);
+          $(`.playlist[data-id=${id}]`).remove();
+          $("#deleteModal").modal("hide");
+        });
+
         $(".modal button[name=addsong]").click(addSongToView);
 
         $("#editsongsmodal button[name=save]").click(e=> {
@@ -165,6 +173,7 @@
                 console.log("Saved Songs!!");
               });
             }
+            $("#editsongsmodal").modal("hide");
           }
 
           //console.log(songsArray);
@@ -189,9 +198,9 @@
     //     viewModal();
     //   },
 
-      deletePlaylist : function (playlistId) {
-
-        viewModal();
+      deleteConfirmation : function (playlistId) {
+        $("#deleteId").val(playlistId);
+        $("#deleteModal").modal("show");
       },
 
       init: init

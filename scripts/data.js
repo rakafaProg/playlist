@@ -65,7 +65,13 @@
       },
 
       deletePlaylist: function (id) {
-
+        $.ajax({
+          type: "DELETE",
+          url: apiUrl + "/" + id,
+          success: (result, status, xhr) => {
+            playlistArray[id] = null;
+          }
+        });
       },
 
       playlistArray: playlistArray,
