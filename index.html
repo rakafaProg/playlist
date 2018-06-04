@@ -70,9 +70,27 @@
     </header>
 
     <main>
-      <div id="player">
-        <div class="image-cropper">
-          <img src="https://images.shulcloud.com/719/uploads/Icons/song.png">
+      <div id="player" class="row">
+          <audio controls>
+              <source src="https://k006.kiwi6.com/hotlink/89egzfld8n/Fragile.mp3" type="audio/mpeg">
+          </audio>
+        <div class="col-xs-5">
+            <div class="image-cropper playing">
+              <img src="https://images.shulcloud.com/719/uploads/Icons/song.png">
+              <i class="glyphicon glyphicon-pause" id="pausePlayer"></i>
+            </div>
+            
+        </div>
+        
+        <div class="col-xs-7" id="songsList">
+          <div><b class="name">Playlist Name</b></div>
+            <ol>
+              <li>Song About You</li>
+              <li class="current">Song about me</li>
+              <li>Song about us</li>
+            </ol>
+              
+
         </div>
       </div>
       <div id="playlists">
@@ -80,7 +98,7 @@
       </div>
     </main>
 
-    <!-- Modal -->
+    <!-- Add playlist Modal -->
     <div class="modal fade" data-backdrop="false" id="addplaylistmodal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -118,7 +136,7 @@
     </div><!-- /.modal -->
 
 
-
+    <!-- Edit songs Modal -->
     <div class="modal fade" data-backdrop="false" id="editsongsmodal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -138,6 +156,7 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <!-- delete Modal -->
     <div class="modal fade" data-backdrop="false" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -50,12 +50,60 @@ header {
     background-color: #f05151a2;
     padding: 5px;
     border-radius: 50px;
+    display: none;
 }
 
-#player .image-cropper {
+#player .image-cropper.playing img{
     -webkit-animation: rotation 7s infinite linear;
+    
+}
+
+#player audio {
+    display: table;
+    margin: 4px auto 8px;
 
 }
+
+#songsList .current {
+    /* content: "|>"; */
+    list-style-type: none;
+    /* position: relative; */
+    opacity: 1;
+}
+
+#songsList li {
+    position: relative;
+    opacity: 0.5;
+}
+
+#songsList li.current::before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e072";
+    position: absolute;
+    left: -19px;
+    opacity: 1;
+}
+
+#songsList li.current:hover::before {
+    content: "\e073";
+}
+
+#songsList li:hover::before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e072";
+    position: absolute;
+    left: -19px;
+    opacity: 1;
+    
+}
+
+#songsList li:hover {
+    list-style-type: none;
+}
+
+
+
+
 
 @-webkit-keyframes rotation {
     from {
