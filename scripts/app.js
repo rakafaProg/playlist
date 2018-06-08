@@ -73,14 +73,14 @@
       $("#songsList ol").html(songsHtml(d.songs));
       $("#songsList ol li:first").addClass("current");
       $("#player").show();
-      changeAudio(d.songs[0].url, d.songs[0].name);
+      changeAudio();
       $("#songsList li").click(e=>{
         if ($(e.target).hasClass("current")) {
           togglePlaying();
         } else {
           $(".current").removeClass("current");
           $(e.target).addClass("current");
-          changeAudio($(e.target).data("url"),$(e.target).text());
+          changeAudio();
           
         }
         
@@ -96,8 +96,12 @@
     return tempHtml;
   }
 
-  function changeAudio(url, title) {
-    //console.log("changeing audio " + url);
+  function changeAudio() {
+    
+    let url = $(".current").data("url");
+    let title = $(".current").text();
+    
+    
     if (url) {
       $(document).attr("title", title);
       var audio = $("#player audio");   
@@ -114,24 +118,30 @@
       audio[0].onended = ()=>{
         let nxt = $(".current").next();
         $(".current").removeClass("current");
-        let newurl = nxt.addClass("current").data("url");
-        changeAudio(newurl, nxt.text());
+        nxt.addClass("current");
+        changeAudio();
       };
       
     } else {
       $("#player .image-cropper").removeClass("playing");
-      $("#player i").addClass("glyphicon-pause").removeClass("glyphicon-play");
+      $("#player i.playerGlyph").addClass("glyphicon-pause").removeClass("glyphicon-play");
     }
   }
 
   $("#player audio")[0].addEventListener("play",()=>{
     $("#player .image-cropper").addClass("playing");
-    $("#player i").addClass("glyphicon-pause").removeClass("glyphicon-play");
+    $("#player i.playerGlyph").addClass("glyphicon-pause").removeClass("glyphicon-play");
   });
   $("#player audio")[0].addEventListener("pause",()=>{
     $("#player .image-cropper").removeClass("playing");
-    $("#player i").addClass("glyphicon-play").removeClass("glyphicon-pause");
+    $("#player i.playerGlyph").addClass("glyphicon-play").removeClass("glyphicon-pause");
   });
+
+  $("#player .editors .glyphicon-remove").click(()=>{
+    $("#player audio")[0].pause();
+    $("#player").hide();
+    $(document).attr("title", "Play Me")
+  }) ;
 
 
   
@@ -140,6 +150,28 @@
 
   init();
 
+
+  function search (textToSearch) {
+    let searchedArr = data.playlistArray.filter(playlist => playlist.name.includes(textToSearch));
+    return searchedArr;
+  }
+
+  $("input[name=search]").keyup(e=>{
+    let searchVal = $(e.target).val().toUpperCase();
+    if (searchVal.length >= 2) {
+      $("#playlists .playlist").each((index,value)=>{
+        let id = $(value).data("id");
+        if (data.playlistArray[id].name.toUpperCase().includes(searchVal)) {
+          $(value).show();
+        } else {
+          $(value).hide();
+        }
+      });
+
+    } else {
+      $("#playlists .playlist").show();
+    }
+  });
 
 })();
 

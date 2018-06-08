@@ -53,7 +53,7 @@
             <form class="nav navbar-nav navbar-form navbar-right">
               <div id="custom-search-input">
                       <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search..." />
+                          <input type="text" class="form-control" name="search" placeholder="Search..." />
                           <span class="input-group-btn">
                               <button class="btn btn-info" type="button">
                                   <i class="glyphicon glyphicon-search"></i>
@@ -70,32 +70,45 @@
     </header>
 
     <main>
-      <div id="player" class="row">
-          <audio controls>
-              <source src="https://k006.kiwi6.com/hotlink/89egzfld8n/Fragile.mp3" type="audio/mpeg">
-          </audio>
-        <div class="col-xs-5">
-            <div class="image-cropper playing">
-              <img src="https://images.shulcloud.com/719/uploads/Icons/song.png">
-              <i class="glyphicon glyphicon-pause" id="pausePlayer"></i>
+      <div id="player">
+          
+          <div  class="row fixed">
+              <div class="editors">
+                  <i class="glyphicon glyphicon-remove" title="Close Player"></i>
+                  <i class="glyphicon glyphicon-edit" title="Edit Playlist"></i>
+                  <i class="glyphicon glyphicon-trash" title="Delete Playlist"></i>
+                </div>
+              <audio controls>
+                  <source src="https://k006.kiwi6.com/hotlink/89egzfld8n/Fragile.mp3" type="audio/mpeg">
+              </audio>
+            <div class="col-xs-5">
+                <div class="image-cropper playing">
+                  <img src="https://images.shulcloud.com/719/uploads/Icons/song.png">
+                  <i class="glyphicon glyphicon-pause playerGlyph" id="pausePlayer"></i>
+                </div>
+                
+            </div>
+            <div class="col-xs-7" id="songsList">
+                <div><b class="name">Playlist Name</b></div>
+                  <ol>
+                    <li>Song About You</li>
+                    <li class="current">Song about me</li>
+                    <li>Song about us</li>
+                  </ol>
+                    
+      
+              </div>
             </div>
             
-        </div>
-        
-        <div class="col-xs-7" id="songsList">
-          <div><b class="name">Playlist Name</b></div>
-            <ol>
-              <li>Song About You</li>
-              <li class="current">Song about me</li>
-              <li>Song about us</li>
-            </ol>
-              
-
-        </div>
-      </div>
+            
+            <!-- <i class="glyphicon glyphicon-play"></i> -->
+          </div>
+      
+      
       <div id="playlists">
-
+      
       </div>
+     
     </main>
 
     <!-- Add playlist Modal -->

@@ -42,15 +42,58 @@ header {
 
 
 #player {
-    /* height: 180px; */
+    height: 220px;
     width: 450px;
     margin: 5px auto;
+    background-color: #000;
+    display: none;
+    position: relative;
+}
+
+#player .editors i {
+    text-align: center;
+    left: 50px;
+    width: 30px;
+    height: 30px;
+    background-color: #E4E4E4;
+    border-radius: 50%;
+    padding-top: 7px;
+    
+    cursor: pointer;
+    position: absolute;
+    left: -60px;
+}
+
+#player .editors i.glyphicon-trash {
+   top: 120px;
+    color: red;
+    
+}
+
+#player .editors i.glyphicon-edit {
+    color: orange;
+    top: 70px;
+}
+
+#player .editors i.glyphicon-remove {
+    color: black;
+    top: 20px;
+    
+}
+
+#player .fixed {
+    position: fixed;
+    width: 450px;
     border: 7px double #333;
     
     background-color: #f05151a2;
     padding: 5px;
     border-radius: 50px;
-    display: none;
+    z-index:10000;
+}
+
+.modal {
+    z-index: 100000
 }
 
 #player .image-cropper.playing img{
