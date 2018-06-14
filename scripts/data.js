@@ -1,81 +1,67 @@
-
-
-  var data = function () {
-    var apiUrl = "api/playlist";
-    let playlistArray =[];
-
-    function getData (url, callback) {
+const data = function () {
+    let apiUrl = "api/playlist";
+    let playlistArr = [];
+  
+    function getData(url, callback) {
       $.ajax({
         type: "GET",
         url: apiUrl + url,
-        success: (result, status, xhr) => {
+        success: (result) => {
           callback(result.data);
         }
       });
     }
-
-    function postData (url, data, callback) {
-        console.log("trying to post data");
-        $.ajax({
+  
+    function postData(url, data, callback) {
+      $.ajax({
         type: "POST",
         url: apiUrl + url,
         data: data,
-        success: (result, status, xhr) => {
+        success: (result) => {
           callback(result.data);
         }
       });
     }
-
+  
+    function deleteData (pId) {
+      $.ajax({
+        type: "DELETE",
+        url: apiUrl + "/" + pId,
+        success: () => {
+          playlistArr[pId] = undefined;
+        }
+      });
+    }
+  
+    function createPlaylist (pName, pImage, pSongs, callback) {
+      let playlistObj = {
+        name: pName,
+        image: pImage,
+        songs: pSongs
+      };
+  
+      postData ("", playlistObj, data => {
+        playlistArr[data.id] = {id: data.id, name: pName, image: pImage};
+        callback (data.id);
+      });
+  
+    }
+  
+    function updatePlaylist (playlistObj) {  
+      postData (`/${playlistObj.id}`, playlistObj, () => {
+        playlistArr[playlistObj.id] = playlistObj;
+      });
+    }
+  
     return {
-      getAllPlaylists: function (callback) {
-        getData("", callback);
-      },
-
-      getSongs: function (playlistId, callback) {
-        getData(`/${playlistId}/songs`, callback);
-      },
-
-      createPlaylist: function (pName, pImg, songs, callback) {
-        let playlistObj = {
-          name: pName,
-          image: pImg,
-          songs: songs
-        };
-        
-        postData("", playlistObj, data=> {
-          playlistArray[data.id] = {id:data.id, name:pName,image:pImg};
-          callback(data.id);
-        });
-        
-        //callback(1); // plalist id
-      },
-
-      updatePlalist: function (id, name, image) {
-        let playlistObj = {
-          name: name,
-          image: image,
-        };
-        postData("/" + id, playlistObj, ()=>{
-          playlistArray[id] = {id:id, name:name,image:image};
-        });
-      },
-
-      updateSongs: function (pId, songs, callback) {        
-        postData(`/${pId}/songs`,{songs: songs},  callback);
-      },
-
-      deletePlaylist: function (id) {
-        $.ajax({
-          type: "DELETE",
-          url: apiUrl + "/" + id,
-          success: (result, status, xhr) => {
-            playlistArray[id] = null;
-          }
-        });
-      },
-
-      playlistArray: playlistArray,
-
+      playlistArr : playlistArr,
+      getAllPlaylists: (callback) => getData("", callback),
+      getSongs: (pId, callback) => getData (`/${pId}/songs`, callback),
+      createPlaylist : createPlaylist,
+      updatePlaylist : updatePlaylist,
+      updateSongs : (pId, songs, callback) => 
+          postData(`/${pId}/songs`,{songs: songs},  callback),  
+      deletePlaylist : deleteData,
     };
-
+  
   }();
