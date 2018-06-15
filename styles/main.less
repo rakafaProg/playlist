@@ -1,0 +1,73 @@
+@import "playlists.less";
+@import "player.less";
+@import "modals.less";
+
+body {
+    background-color:#000;
+    color:#fff;
+    font-family:arial;
+    padding: 0 3%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img.full-size {
+    width: 100%;
+}
+  
+header {
+    height: 100px;
+
+    .navbar-brand img {
+        height: 100%;
+    }
+
+    #custom-search-input{
+        padding: 3px;
+        border: solid 1px #E4E4E4;
+        border-radius: 6px;
+        background-color: #fff;
+
+        input {
+            border: 0;
+            box-shadow: none;
+        }
+
+        button{
+            background: none;
+            box-shadow: none;
+            border: 0;
+            color: #666666;
+            padding: 0 8px 0 10px;
+            border-left: solid 1px #ccc;
+        }
+
+        .glyphicon-search{
+            font-size: 20px;
+        }
+    }
+
+}
+
+.editors i, .image-cropper i {
+    position: absolute;    
+    text-align: center;
+    padding-top: 7px;
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+    background-color: #E4E4E4;
+    cursor: pointer;
+
+    &.glyphicon-trash {
+        color: #f90000;
+    }
+
+    &.glyphicon-edit {
+        color: #ffa550;
+    }
+}
+

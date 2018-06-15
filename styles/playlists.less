@@ -1,0 +1,69 @@
+.playlist {
+    width: 150px;
+    margin: 20px;
+    float: left;
+    position: relative;
+
+    .name {
+        font-family: cursive;
+        margin: auto;
+        text-align: center;
+        font-size: 18px;
+        height: 22px;
+        overflow-x: visible;
+    }
+
+}
+
+.image-cropper {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50%;
+    border: 3px dotted #aaa;
+
+    &:hover i {
+        visibility: visible;
+    }
+
+    img {
+        display: inline;
+        margin: 0 auto;
+        height: 105%;
+        width: auto;
+        opacity: 0.75;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    i {
+        visibility: hidden;
+        // z-index: 100;
+
+        &.glyphicon-trash {
+            top: 8px;
+            left: 42px;
+        }
+
+        &.glyphicon-edit {
+            top: 8px;
+            left: 78px;
+        }
+
+        &.glyphicon-play, &.glyphicon-pause {
+            top: 60px;
+            left: 60px;
+            color: #000;
+        }
+
+        &:active {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+
+}

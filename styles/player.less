@@ -1,0 +1,93 @@
+#songsList {
+
+    li {
+        position: relative;
+        opacity: 0.5;
+
+        &.current {
+            list-style-type: none;
+            opacity: 1;
+
+            &::before {
+                font-family: 'Glyphicons Halflings';
+                content: "\e072";
+                position: absolute;
+                left: -19px;
+                opacity: 1;
+            }
+
+            &:hover::before {
+                content: "\e073";
+            }
+        }
+
+        &:hover {
+            list-style-type: none;
+
+            &::before {
+                font-family: 'Glyphicons Halflings';
+                content: "\e072";
+                position: absolute;
+                left: -19px;
+                opacity: 1;
+            }
+        }
+    }
+
+}
+
+
+#player {
+    height: 220px;
+    width: 450px;
+    margin: 5px auto;
+    background-color: #000;
+    display: none;
+    position: relative;
+
+    .fixed {
+        position: fixed;
+        width: 450px;
+        border: 7px double #333;
+        
+        background-color: #f05151;
+        padding: 5px;
+        border-radius: 50px;
+        z-index:10000;
+    }
+
+    audio {
+        display: table;
+        margin: 4px auto 8px;
+    }
+
+    .editors i {
+        left: -60px;
+
+        &.glyphicon-remove {
+            color: #000;
+            top: 20px;
+        }
+
+        &.glyphicon-edit {
+            top: 70px;
+        }
+
+        &.glyphicon-trash {
+            top: 120px;
+        }
+    }
+
+    .image-cropper.playing img {
+        -webkit-animation: rotation 7s infinite linear;
+    }
+}
+
+@-webkit-keyframes rotation {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
+}
